@@ -1,0 +1,21 @@
+pelTable.on("dataLoaded", function(data){
+					if ($("#selPage").length == 0){
+						const input = $('<input type="text" />').attr({
+							id: 'selPage',
+							name: 'selPage',
+							value:1,
+							size: 3
+						}).appendTo("body");
+						input.on('change', function(){
+							if (isNaN(input.val())){
+								return
+							}
+							pelTable.setPage(input.val())
+							
+							});
+						$(".tabulator-paginator").append("&nbsp;")
+						$(".tabulator-paginator").append( document.createTextNode( "Go to page:" ) )
+						$(".tabulator-paginator").append(input);
+					} else {
+						$("#selPage").val(pelTable.getPage())
+					}
